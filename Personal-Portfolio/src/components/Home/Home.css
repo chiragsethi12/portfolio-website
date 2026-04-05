@@ -1,0 +1,288 @@
+.main-div {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  background-color: rgb(7, 7, 30);
+  gap: 50px;
+  color: white;
+  padding-bottom: 2rem;
+  /* allow page vertical scrolling when content exceeds viewport */
+  overflow: hidden;
+  padding: 100px 0px;
+}
+
+.leftBox {
+  display: flex;
+  flex-direction: column;
+  justify-content: center !important;
+  padding: 100px;
+}
+.rightBox {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 150px;
+}
+@media (max-width: 1600px) {
+  .leftBox {
+    padding: 40px 20px;
+  }
+  .rightBox {
+    padding: 40px 20px;
+  }
+}
+
+#full {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 70px;
+  color: whitesmoke;
+}
+#developer {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 70px;
+  background: linear-gradient(90deg, #0a66c2, #cd0290);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  padding-bottom: 30px;
+}
+.heroText {
+  font-size: 1.4rem;
+  line-height: 1.2;
+}
+.typewrap {
+  display: inline-block;
+  white-space: nowrap; /* KEY FIX */
+}
+
+.typed-cursor {
+  display: inline-block;
+  font-size: 1.4rem;
+}
+p {
+  font-size: 20px;
+  padding-bottom: 20px;
+  color: rgba(255, 255, 255, 0.856);
+  font-family: "baloo 2", cursive;
+}
+
+.skils-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.skils-div p {
+  padding-bottom: 0px;
+  width: 170px;
+  height: 50px;
+  background-color: rgba(128, 128, 128, 0.559);
+  border: 1px solid black;
+  border-radius: 18px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  margin: 10px;
+  margin-left: 0px;
+  font-size: 20px;
+  font-family: "baloo 2", cursive;
+}
+.btn-div {
+  margin-top: 30px;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 25px;
+  padding-left: 5px;
+}
+.btn-div button {
+  width: 150px;
+  height: 50px;
+  border-radius: 8px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #0a66c2;
+  color: whitesmoke;
+}
+.btn-div a:hover {
+  background-color: rgb(7, 7, 30);
+  border: 1px solid #0a66c2;
+  color: #0a66c2;
+}
+.links {
+  margin-top: 30px;
+  width: 500px;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  gap: 25px;
+  padding-left: 5px;
+}
+.links button {
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgb(6, 6, 94);
+  color: whitesmoke;
+}
+.links a:hover {
+  background-color: rgb(3, 3, 120);
+}
+button {
+  border: none;
+}
+.break {
+  width: 100%;
+  height: 1px;
+  background-color: grey;
+}
+.btn-div a {
+  text-decoration: none;
+  color: whitesmoke;
+  font-family: "baloo 2", cursive;
+  width: 150px;
+  height: 50px;
+  border-radius: 8px;
+  font-size: 20px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: #0a66c2;
+  color: whitesmoke;
+}
+.links a {
+  text-decoration: none;
+  color: whitesmoke;
+  font-family: "baloo 2", cursive;
+  width: 50px;
+  height: 50px;
+  border-radius: 8px;
+  font-size: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  background-color: rgb(6, 6, 94);
+  color: whitesmoke;
+}
+.waviy {
+  position: relative;
+  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
+  font-size: 60px;
+}
+.waviy span {
+  font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
+  font-size: 70px;
+  background: #00bfff;
+  -webkit-background-clip: text;
+  background-clip: text !important;
+  color: transparent;
+  padding-bottom: 30px;
+  position: relative;
+  display: inline-block;
+  text-transform: uppercase;
+  animation: waviy 1s infinite;
+  animation-delay: calc(0.1s * var(--i));
+}
+@keyframes waviy {
+  0%,
+  40%,
+  100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-20px);
+  }
+}
+/* =========================
+   HOME RESPONSIVE (MOBILE)
+   ========================= */
+
+@media (max-width: 1300px) {
+  .main-div {
+    flex-direction: column-reverse; /* rightBox on top */
+    justify-content: center;        /* vertical center */
+    align-items: center;            /* horizontal center */
+    gap: 24px;
+    padding: 0px 20px;                /* only horizontal padding */
+    text-align: center;
+    overflow: hidden;
+  }
+
+  .leftBox,
+  .rightBox {
+    padding: 0;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* IMAGE */
+  .rightBox img {
+    max-width: 260px;
+    width: 100%;
+    height: auto;
+  }
+
+  /* TEXT SIZES */
+  #full {
+    font-size: 42px;
+  }
+
+  .waviy span {
+    font-size: 42px;
+  }
+
+  .heroText {
+    font-size: 1.1rem;
+  }
+
+  p {
+    font-size: 16px;
+  }
+
+  /* SKILLS */
+  .skils-div {
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  /* BUTTONS */
+  .btn-div,
+  .links {
+    width: 100%;
+    justify-content: center;
+    padding-left: 0;
+  }
+}
+@media (max-width: 768px)
+{
+  .btn-div{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  
+}

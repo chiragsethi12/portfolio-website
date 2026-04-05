@@ -1,0 +1,189 @@
+.Navbar-div {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 90px;
+  z-index: 9999;
+}
+
+/* INNER BLUR LAYER (SAFE) */
+.Navbar-blur {
+  height: 100%;
+  width: calc(100% - var(--scrollbar-width, 0px));
+
+  background: rgba(7, 7, 30, 0);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+}
+
+.Navbar-div a.active {
+  opacity: 1;
+  color: #00bfff;
+  font-weight: 600;
+}
+
+.Navbar-div a.active::after {
+  content: "";
+  display: block;
+  height: 2px;
+  background: #00bfff;
+  margin-top: 4px;
+}
+.Navbar-div nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-left: 40px;
+}
+.name {
+  color: white;
+  font-size: 40px;
+  font-weight: 300;
+  font-family: "Baloo 2", cursive;
+}
+.navList ul {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-right: 100px;
+  color: white;
+  list-style: none;
+  font-family: "Baloo 2", cursive;
+  font-size: 25px;
+  gap: 40px;
+}
+.Navbar-div a {
+  color: white;
+  text-decoration: none;
+  position: relative;
+  transition: color 0.5s ease;
+}
+
+.Navbar-div a::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 2px;
+  background: linear-gradient(90deg, transparent, #a6a6a6, transparent);
+  background-size: 300% 100%;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+.Navbar-div a:hover {
+  color: #0a66c2;
+}
+
+.Navbar-div a:hover::after {
+  opacity: 1;
+  animation: shimmer111 2s linear infinite !important;
+}
+
+@keyframes shimmer111 {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+/* =========================
+   MOBILE FULLSCREEN MENU
+   ========================= */
+
+.hamburger {
+  display: none;
+  position: relative;
+  z-index: 10003; /* HIGHER than mobileMenu */
+}
+
+.mobileMenu {
+  display: none;
+}
+
+@media (max-width: 768px) {
+  .navList {
+    display: none;
+  }
+
+  .hamburger {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    cursor: pointer;
+    position: relative;
+    z-index: 10003;
+  }
+
+  .hamburger span {
+    width: 28px;
+    height: 3px;
+    background: white;
+    transition: all 0.4s ease;
+  }
+
+  .hamburger.open span:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+  }
+
+  .hamburger.open span:nth-child(2) {
+    opacity: 0;
+  }
+
+  .hamburger.open span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+  }
+
+  .mobileMenu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(5, 20, 45, 0.96);
+    backdrop-filter: blur(14px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 30px;
+
+    z-index: 10001;
+  }
+  .mobileMenu a {
+    color: whitesmoke;
+    font-family: "baloo 2", cursive;
+    text-decoration: none;
+  }
+}
+/* =========================
+   MOBILE MENU CLOSE BUTTON
+   ========================= */
+
+.closeBtn {
+  position: absolute;
+  top: 25px;
+  right: 25px;
+
+  background: none;
+  border: none;
+  color: white;
+  font-size: 30px;
+  font-weight: 100;
+
+  cursor: pointer;
+  z-index: 10004;
+}
+
+.closeBtn:hover {
+  color: #00bfff;
+}

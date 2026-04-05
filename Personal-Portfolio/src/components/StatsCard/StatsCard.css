@@ -1,0 +1,123 @@
+/* Container */
+.cards-container {
+  font-family: "baloo 2", cursive;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: rgb(7, 7, 30);
+  padding-top: 50px;
+  padding-bottom: 100px;
+}
+
+/* Card */
+.stats-card {
+  width: 400px;
+  position: relative;
+  padding: 28px 32px;
+  border-radius: 18px;
+
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.08),
+    rgba(255, 255, 255, 0.02)
+  );
+
+  backdrop-filter: blur(18px);
+  -webkit-backdrop-filter: blur(18px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+
+  color: #ffffff;
+  transition: transform 0.35s ease, box-shadow 0.35s ease;
+  overflow: hidden;
+}
+
+/* Hover effect */
+.stats-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.45);
+}
+
+/* Subtle gradient glow */
+.stats-card::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at top left, #0a66c26d, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+}
+
+.stats-card:hover::before {
+  opacity: 1;
+}
+
+/* Icon */
+.stats-card .icon {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.12);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  font-size: 20px;
+  margin-bottom: 18px;
+}
+
+/* Number */
+.stats-card h2 {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+/* Title */
+.stats-card h4 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 1.2px;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: 8px;
+}
+
+/* Description */
+.stats-card p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.65);
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .cards-container {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Stack stats cards into a centered column on medium+small screens */
+@media (max-width: 1300px) {
+  .cards-container {
+    flex-direction: column;
+    align-items: center;
+    gap: 28px;
+    padding: 20px;
+  }
+
+  .stats-card {
+    width: 100%;
+    max-width: 720px;
+  }
+}
+.fade-card {
+  opacity: 0;
+  transition: opacity 3.5s ease;
+  will-change: opacity;
+}
+
+.fade-card.show {
+  opacity: 1;
+}

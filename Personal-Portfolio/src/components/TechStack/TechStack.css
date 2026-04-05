@@ -1,0 +1,75 @@
+.techstack {
+  padding: 4rem 0;
+  background-color: rgb(7, 7, 30);
+}
+
+/* GRID */
+.techstack-grid {
+  padding: 50px;
+  max-width: 1200px;
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 1.5rem;
+}
+
+/* SCROLL SLIDE (WRAPPER) */
+.tech-card-wrapper {
+  opacity: 0;
+  transition: opacity 1.6s ease, transform 1.6s cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.from-left {
+  transform: translateX(-120px);
+}
+
+.from-right {
+  transform: translateX(120px);
+}
+
+.tech-card-wrapper.show {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* FLOATING CARD (INNER) */
+.tech-card {
+  background: rgba(7, 7, 33, 0.85);
+  border-radius: 20px;
+  padding: 1.75rem 1rem;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.25);
+
+  transition: transform 0.12s ease, box-shadow 0.25s ease;
+  will-change: transform;
+}
+
+.tech-card:hover {
+  box-shadow: 0 18px 35px rgba(0, 0, 0, 0.35);
+}
+
+.tech-icon {
+  font-size: 3rem;
+  margin-bottom: 1rem;
+}
+
+.tech-name {
+  font-size: 0.9rem;
+  color: #e5e7eb;
+}
+
+/* Responsive: 4 columns under 1000px, 2 columns under 100px */
+@media (max-width: 1000px) {
+  .techstack-grid {
+    grid-template-columns: repeat(4, 1fr);
+    padding: 36px;
+  }
+}
+
+@media (max-width: 600px) {
+  .techstack-grid {
+    grid-template-columns: repeat(2, 1fr);
+    padding: 20px;
+    gap: 1rem;
+  }
+}
