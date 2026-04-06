@@ -1,8 +1,9 @@
 .footer {
   font-family: 'baloo 2', cursive;
   padding: 20px 20px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  background-color: rgba(7, 7, 30);
+  border-top: 1px solid whitesmoke;
+  background:
+    radial-gradient(#0b1220 0%, #05070d 70%);
   color: #bdbdbd;
 }
 

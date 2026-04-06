@@ -4,19 +4,22 @@ html {
   scroll-behavior: smooth;
   scroll-padding-top: 90px;
 }
+
 body {
-  background-color: rgb(7, 7, 30);
+  background: radial-gradient(#0b1220 0%, #05070d 70%);
   width: 100%;
   margin: 0;
   padding: 0;
   overflow-x: hidden;
   padding-top: 90px;
 }
+
 * {
   margin: 0px;
   padding: 0px;
   box-sizing: border-box;
 }
+
 /* Chrome / Edge */
 ::-webkit-scrollbar {
   width: 10px;
@@ -47,4 +50,5 @@ body,
 #root {
   height: auto;
 }
+
 /* ensure root fills viewport (do not disable page scrolling) */

@@ -1,288 +1,678 @@
+/* ============================================================
+   HERO – MAIN CONTAINER
+   ============================================================ */
 .main-div {
   width: 100%;
-  height: 100vh;
+  min-height: 100vh;
   display: flex;
   flex-direction: row;
-  justify-content: space-between;
+  justify-content: center;
   align-items: center;
-  background-color: rgb(7, 7, 30);
-  gap: 50px;
+  background:
+    radial-gradient(ellipse 70% 55% at 68% 50%, #0b1220 0%, #05070d 70%);
+  gap: 0;
   color: white;
-  padding-bottom: 2rem;
-  /* allow page vertical scrolling when content exceeds viewport */
+  padding: 100px 80px;
   overflow: hidden;
-  padding: 100px 0px;
+  position: relative;
+  box-sizing: border-box;
 }
 
+/* Subtle dot-grid texture */
+.main-div::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: radial-gradient(circle, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 40px 40px;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* ============================================================
+   LEFT BOX – TEXT CONTENT
+   ============================================================ */
 .leftBox {
+  position: relative;
+  z-index: 1;
   display: flex;
   flex-direction: column;
-  justify-content: center !important;
-  padding: 100px;
+  justify-content: center;
+  flex: 1;
+  max-width: 580px;
+  padding: 0 32px 0 0;
 }
+
+/* ============================================================
+   RIGHT BOX – ORBIT SYSTEM CONTAINER
+   ============================================================ */
 .rightBox {
+  position: relative;
+  z-index: 1;
   display: flex;
-  flex-direction: row;
   align-items: center;
   justify-content: center;
-  padding: 150px;
+  flex-shrink: 0;
+  padding: 0 0 0 32px;
 }
-@media (max-width: 1600px) {
-  .leftBox {
-    padding: 40px 20px;
+
+/* ============================================================
+   ORBIT SYSTEM WRAPPER
+   ============================================================ */
+.orbit-system {
+  position: relative;
+  width: 380px;
+  height: 380px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* ============================================================
+   AVATAR IMAGE
+   ============================================================ */
+.avatar-img {
+  position: relative;
+  z-index: 10;
+  width: 190px;
+  height: 190px;
+  object-fit: cover;
+  border-radius: 50%;
+  border: 1.5px solid rgba(59, 130, 246, 0.3);
+  box-shadow:
+    0 0 20px rgba(59, 130, 246, 0.2),
+    0 0 50px rgba(59, 130, 246, 0.08);
+}
+
+/* ============================================================
+   RADIAL GLOW BEHIND AVATAR
+   ============================================================ */
+.avatar-glow {
+  position: absolute;
+  z-index: 1;
+  width: 280px;
+  height: 280px;
+  border-radius: 50%;
+  background: radial-gradient(circle,
+      rgba(59, 130, 246, 0.28) 0%,
+      rgba(99, 102, 241, 0.12) 45%,
+      transparent 72%);
+  filter: blur(22px);
+  pointer-events: none;
+}
+
+/* ============================================================
+   ORBIT RINGS  – shared base
+   ============================================================ */
+.orbit-ring {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 50%;
+  transform: translate(-50%, -50%);
+  /* rings use a conic/border trick */
+}
+
+/* Ring 1 – inner */
+.orbit-ring-1 {
+  width: 255px;
+  height: 255px;
+  border: 1.2px solid transparent;
+  background:
+    linear-gradient(#05070d, #05070d) padding-box,
+    conic-gradient(from 0deg,
+      rgba(56, 189, 248, 0.9) 0%,
+      rgba(168, 85, 247, 0.6) 40%,
+      rgba(56, 189, 248, 0.15) 60%,
+      rgba(56, 189, 248, 0.9) 100%) border-box;
+  box-shadow:
+    0 0 10px rgba(56, 189, 248, 0.25),
+    inset 0 0 10px rgba(56, 189, 248, 0.08);
+  animation: spin-cw 12s linear infinite;
+  z-index: 2;
+}
+
+/* Ring 2 – middle */
+.orbit-ring-2 {
+  width: 315px;
+  height: 315px;
+  border: 1px solid transparent;
+  background:
+    linear-gradient(#05070d, #05070d) padding-box,
+    conic-gradient(from 180deg,
+      rgba(168, 85, 247, 0.9) 0%,
+      rgba(56, 189, 248, 0.5) 45%,
+      rgba(168, 85, 247, 0.12) 65%,
+      rgba(168, 85, 247, 0.9) 100%) border-box;
+  box-shadow:
+    0 0 12px rgba(168, 85, 247, 0.2),
+    inset 0 0 12px rgba(168, 85, 247, 0.06);
+  animation: spin-ccw 18s linear infinite;
+  z-index: 2;
+}
+
+/* Ring 3 – outer */
+.orbit-ring-3 {
+  width: 380px;
+  height: 380px;
+  border: 0.8px solid transparent;
+  background:
+    linear-gradient(#05070d, #05070d) padding-box,
+    conic-gradient(from 90deg,
+      rgba(56, 189, 248, 0.7) 0%,
+      rgba(168, 85, 247, 0.7) 50%,
+      rgba(56, 189, 248, 0.08) 75%,
+      rgba(56, 189, 248, 0.7) 100%) border-box;
+  box-shadow:
+    0 0 16px rgba(99, 102, 241, 0.15),
+    inset 0 0 16px rgba(99, 102, 241, 0.05);
+  animation: spin-cw 28s linear infinite;
+  z-index: 2;
+}
+
+/* ============================================================
+   SPIN KEYFRAMES
+   ============================================================ */
+@keyframes spin-cw {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
   }
-  .rightBox {
-    padding: 40px 20px;
+
+  to {
+    transform: translate(-50%, -50%) rotate(360deg);
   }
 }
 
+@keyframes spin-ccw {
+  from {
+    transform: translate(-50%, -50%) rotate(0deg);
+  }
+
+  to {
+    transform: translate(-50%, -50%) rotate(-360deg);
+  }
+}
+
+/* ============================================================
+   ORBIT PARTICLES – shared base
+   Each particle sits at the top of its ring (radius = ring-radius)
+   and the ring's own rotation carries it around.
+   ============================================================ */
+.orbit-particle {
+  position: absolute;
+  border-radius: 50%;
+  z-index: 5;
+  pointer-events: none;
+}
+
+/* ── Ring 1 particles (radius = 127.5px) ── */
+.particle-1a {
+  width: 10px;
+  height: 10px;
+  top: -5px;
+  left: calc(50% - 5px);
+  background: radial-gradient(circle, #7dd3fc, #38bdf8);
+  box-shadow:
+    0 0 8px 3px rgba(56, 189, 248, 0.9),
+    0 0 20px 6px rgba(56, 189, 248, 0.45);
+}
+
+.particle-1b {
+  width: 8px;
+  height: 8px;
+  bottom: -4px;
+  left: calc(50% - 4px);
+  background: radial-gradient(circle, #c084fc, #a855f7);
+  box-shadow:
+    0 0 8px 3px rgba(168, 85, 247, 0.9),
+    0 0 20px 6px rgba(168, 85, 247, 0.45);
+}
+
+/* ── Ring 2 particles (radius = 175px) ── */
+.particle-2a {
+  width: 9px;
+  height: 9px;
+  top: -4.5px;
+  left: calc(50% - 4.5px);
+  background: radial-gradient(circle, #c084fc, #7c3aed);
+  box-shadow:
+    0 0 10px 4px rgba(168, 85, 247, 0.9),
+    0 0 24px 8px rgba(168, 85, 247, 0.4);
+}
+
+.particle-2b {
+  width: 7px;
+  height: 7px;
+  /* offset 120° for ring-2 radius 157.5px */
+  top: calc(50% - 3.5px + 157.5px * 0.866);
+  left: calc(50% - 3.5px + 157.5px * (-0.5));
+  background: radial-gradient(circle, #67e8f9, #06b6d4);
+  box-shadow:
+    0 0 8px 3px rgba(6, 182, 212, 0.9),
+    0 0 20px 6px rgba(6, 182, 212, 0.4);
+}
+
+.particle-2c {
+  width: 7px;
+  height: 7px;
+  /* offset 240° for ring-2 radius 157.5px */
+  top: calc(50% - 3.5px + 157.5px * (-0.866));
+  left: calc(50% - 3.5px + 157.5px * (-0.5));
+  background: radial-gradient(circle, #818cf8, #6366f1);
+  box-shadow:
+    0 0 8px 3px rgba(99, 102, 241, 0.9),
+    0 0 20px 6px rgba(99, 102, 241, 0.4);
+}
+
+/* ── Ring 3 particles (radius = 210px) ── */
+.particle-3a {
+  width: 8px;
+  height: 8px;
+  top: -4px;
+  left: calc(50% - 4px);
+  background: radial-gradient(circle, #93c5fd, #3b82f6);
+  box-shadow:
+    0 0 10px 4px rgba(59, 130, 246, 0.9),
+    0 0 26px 8px rgba(59, 130, 246, 0.4);
+}
+
+.particle-3b {
+  width: 6px;
+  height: 6px;
+  bottom: -3px;
+  left: calc(50% - 3px);
+  background: radial-gradient(circle, #e879f9, #a21caf);
+  box-shadow:
+    0 0 8px 3px rgba(217, 70, 239, 0.9),
+    0 0 20px 6px rgba(217, 70, 239, 0.4);
+}
+
+/* ============================================================
+   TYPOGRAPHY – HEADING
+   ============================================================ */
 #full {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 70px;
-  color: whitesmoke;
+  font-size: 68px;
+  color: #E5E7EB;
+  line-height: 1.1;
+  margin-bottom: 4px;
 }
+
 #developer {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
   font-size: 70px;
-  background: linear-gradient(90deg, #0a66c2, #cd0290);
+  background: linear-gradient(90deg, #38bdf8, #a855f7);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
   padding-bottom: 30px;
 }
+
 .heroText {
-  font-size: 1.4rem;
-  line-height: 1.2;
+  font-size: 1.15rem;
+  line-height: 1.5;
+  color: #9CA3AF;
+  margin-top: 8px;
+  margin-bottom: 0;
 }
+
 .typewrap {
   display: inline-block;
-  white-space: nowrap; /* KEY FIX */
+  white-space: nowrap;
 }
 
 .typed-cursor {
   display: inline-block;
-  font-size: 1.4rem;
-}
-p {
-  font-size: 20px;
-  padding-bottom: 20px;
-  color: rgba(255, 255, 255, 0.856);
-  font-family: "baloo 2", cursive;
+  font-size: 1.15rem;
+  color: #9CA3AF;
 }
 
-.skils-div {
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-}
-.skils-div p {
-  padding-bottom: 0px;
-  width: 170px;
-  height: 50px;
-  background-color: rgba(128, 128, 128, 0.559);
-  border: 1px solid black;
-  border-radius: 18px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  margin: 10px;
-  margin-left: 0px;
-  font-size: 20px;
+p {
+  font-size: 17px;
+  padding-bottom: 0;
+  margin-top: 16px;
+  margin-bottom: 0;
+  color: #9CA3AF;
   font-family: "baloo 2", cursive;
+  line-height: 1.6;
 }
-.btn-div {
-  margin-top: 30px;
-  width: 500px;
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  gap: 25px;
-  padding-left: 5px;
-}
-.btn-div button {
-  width: 150px;
-  height: 50px;
-  border-radius: 8px;
-  font-size: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: #0a66c2;
-  color: whitesmoke;
-}
-.btn-div a:hover {
-  background-color: rgb(7, 7, 30);
-  border: 1px solid #0a66c2;
-  color: #0a66c2;
-}
-.links {
-  margin-top: 30px;
-  width: 500px;
-  display: flex;
-  flex-direction: row;
-  justify-content: start;
-  gap: 25px;
-  padding-left: 5px;
-}
-.links button {
-  width: 50px;
-  height: 50px;
-  border-radius: 8px;
-  font-size: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: rgb(6, 6, 94);
-  color: whitesmoke;
-}
-.links a:hover {
-  background-color: rgb(3, 3, 120);
-}
-button {
-  border: none;
-}
-.break {
-  width: 100%;
-  height: 1px;
-  background-color: grey;
-}
-.btn-div a {
-  text-decoration: none;
-  color: whitesmoke;
-  font-family: "baloo 2", cursive;
-  width: 150px;
-  height: 50px;
-  border-radius: 8px;
-  font-size: 20px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: #0a66c2;
-  color: whitesmoke;
-}
-.links a {
-  text-decoration: none;
-  color: whitesmoke;
-  font-family: "baloo 2", cursive;
-  width: 50px;
-  height: 50px;
-  border-radius: 8px;
-  font-size: 30px;
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  cursor: pointer;
-  background-color: rgb(6, 6, 94);
-  color: whitesmoke;
-}
+
+/* ============================================================
+   WAVY DEVELOPER TEXT
+   ============================================================ */
 .waviy {
   position: relative;
-  -webkit-box-reflect: below -20px linear-gradient(transparent, rgba(0, 0, 0, 0.2));
   font-size: 60px;
+  margin-bottom: 8px;
 }
+
 .waviy span {
   font-family: Cambria, Cochin, Georgia, Times, "Times New Roman", serif;
-  font-size: 70px;
-  background: #00bfff;
-  -webkit-background-clip: text;
-  background-clip: text !important;
-  color: transparent;
-  padding-bottom: 30px;
+  font-size: 68px;
+  color: #3B82F6;
   position: relative;
   display: inline-block;
   text-transform: uppercase;
-  animation: waviy 1s infinite;
-  animation-delay: calc(0.1s * var(--i));
+  line-height: 1.1;
+  animation: waviy 4s ease-in-out infinite;
+  animation-delay: calc(0.08s * var(--i));
 }
+
 @keyframes waviy {
+
   0%,
-  40%,
+  45%,
   100% {
     transform: translateY(0);
   }
-  20% {
-    transform: translateY(-20px);
+
+  22% {
+    transform: translateY(-6px);
   }
 }
-/* =========================
-   HOME RESPONSIVE (MOBILE)
-   ========================= */
 
-@media (max-width: 1300px) {
+/* ============================================================
+   SKILLS TAGS
+   ============================================================ */
+.skils-div {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 24px;
+}
+
+.skils-div p {
+  padding-bottom: 0;
+  margin: 0;
+  width: auto;
+  padding: 0 16px;
+  height: 36px;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(229, 231, 235, 0.12);
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  font-family: "baloo 2", cursive;
+  color: #9CA3AF;
+  letter-spacing: 0.04em;
+  transition: border-color 0.2s, color 0.2s;
+}
+
+.skils-div p:hover {
+  border-color: rgba(59, 130, 246, 0.5);
+  color: #E5E7EB;
+}
+
+/* ============================================================
+   CTA BUTTONS
+   ============================================================ */
+.btn-div {
+  margin-top: 32px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 16px;
+  width: auto;
+  padding: 0;
+}
+
+.btn-div button {
+  border: none;
+  background: transparent;
+  padding: 0;
+}
+
+.btn-div a {
+  text-decoration: none;
+  font-family: "baloo 2", cursive;
+  width: 140px;
+  height: 46px;
+  border-radius: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+  letter-spacing: 0.02em;
+}
+
+/* Primary button */
+.btn-div button:first-child a {
+  background: #3B82F6;
+  color: #ffffff;
+  border: 1px solid #3B82F6;
+}
+
+.btn-div button:first-child a:hover {
+  opacity: 0.88;
+  transform: translateY(-1px);
+}
+
+/* Secondary button */
+.btn-div button:last-child a {
+  background: transparent;
+  color: #9CA3AF;
+  border: 1px solid rgba(156, 163, 175, 0.3);
+}
+
+.btn-div button:last-child a:hover {
+  color: #E5E7EB;
+  border-color: #3B82F6;
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   SOCIAL LINKS
+   ============================================================ */
+.links {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  gap: 12px;
+  width: auto;
+  padding: 0;
+}
+
+.links a {
+  text-decoration: none;
+  color: whitesmoke;
+  width: 42px;
+  height: 42px;
+  border-radius: 8px;
+  font-size: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: border-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
+}
+
+.links a:hover {
+  border-color: #3B82F6;
+  color: #E5E7EB;
+  transform: translateY(-1px);
+}
+
+button {
+  border: none;
+}
+
+/* ============================================================
+   RESPONSIVE – 1600px
+   ============================================================ */
+@media (max-width: 1600px) {
   .main-div {
-    flex-direction: column-reverse; /* rightBox on top */
-    justify-content: center;        /* vertical center */
-    align-items: center;            /* horizontal center */
-    gap: 24px;
-    padding: 0px 20px;                /* only horizontal padding */
-    text-align: center;
-    overflow: hidden;
+    padding: 100px 60px;
   }
 
-  .leftBox,
+  .leftBox {
+    padding: 0 24px 0 0;
+  }
+
+  .rightBox {
+    padding: 0 0 0 24px;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE – ≤ 1300px  (stack layout)
+   ============================================================ */
+@media (max-width: 1300px) {
+  .main-div {
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+    gap: 48px;
+    padding: 80px 32px;
+    text-align: center;
+  }
+
+  .leftBox {
+    padding: 0;
+    max-width: 100%;
+    width: 100%;
+    align-items: center;
+  }
+
   .rightBox {
     padding: 0;
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
     justify-content: center;
   }
 
-  /* IMAGE */
-  .rightBox img {
-    max-width: 260px;
-    width: 100%;
-    height: auto;
+  .orbit-system {
+    width: 300px;
+    height: 300px;
   }
 
-  /* TEXT SIZES */
+  .avatar-img {
+    width: 150px;
+    height: 150px;
+  }
+
+  .avatar-glow {
+    width: 180px;
+    height: 180px;
+  }
+
+  .orbit-ring-1 {
+    width: 200px;
+    height: 200px;
+  }
+
+  .orbit-ring-2 {
+    width: 250px;
+    height: 250px;
+  }
+
+  .orbit-ring-3 {
+    width: 300px;
+    height: 300px;
+  }
+
+  /* rescale particle-2b/2c to match reduced ring-2 radius (125px) */
+  .particle-2b {
+    top: calc(50% - 3.5px + 125px * 0.866);
+    left: calc(50% - 3.5px + 125px * -0.5);
+  }
+
+  .particle-2c {
+    top: calc(50% - 3.5px + 125px * -0.866);
+    left: calc(50% - 3.5px + 125px * -0.5);
+  }
+
   #full {
-    font-size: 42px;
+    font-size: 40px;
   }
 
   .waviy span {
-    font-size: 42px;
+    font-size: 40px;
   }
 
   .heroText {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
 
   p {
-    font-size: 16px;
+    font-size: 15px;
   }
 
-  /* SKILLS */
   .skils-div {
-    flex-wrap: wrap;
     justify-content: center;
   }
 
-  /* BUTTONS */
   .btn-div,
   .links {
-    width: 100%;
     justify-content: center;
-    padding-left: 0;
   }
 }
-@media (max-width: 768px)
-{
-  .btn-div{
-    display: flex;
+
+/* ============================================================
+   RESPONSIVE – ≤ 768px
+   ============================================================ */
+@media (max-width: 768px) {
+  .main-div {
+    padding: 80px 24px;
+  }
+
+  .btn-div {
     flex-direction: column;
-    justify-content: center;
     align-items: center;
   }
-  
+
+  .orbit-system {
+    width: 260px;
+    height: 260px;
+  }
+
+  .avatar-img {
+    width: 120px;
+    height: 120px;
+  }
+
+  .avatar-glow {
+    width: 150px;
+    height: 150px;
+  }
+
+  .orbit-ring-1 {
+    width: 170px;
+    height: 170px;
+  }
+
+  .orbit-ring-2 {
+    width: 215px;
+    height: 215px;
+  }
+
+  .orbit-ring-3 {
+    width: 260px;
+    height: 260px;
+  }
+
+  .particle-2b {
+    top: calc(50% - 3.5px + 107px * 0.866);
+    left: calc(50% - 3.5px + 107px * -0.5);
+  }
+
+  .particle-2c {
+    top: calc(50% - 3.5px + 107px * -0.866);
+    left: calc(50% - 3.5px + 107px * -0.5);
+  }
+
+  #full {
+    font-size: 34px;
+  }
+
+  .waviy span {
+    font-size: 34px;
+  }
 }

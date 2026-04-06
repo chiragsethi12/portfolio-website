@@ -6,8 +6,10 @@ import Typed from "typed.js";
 import { IoLogoLinkedin } from "react-icons/io5";
 import developerImage from "../../assets/developer_img.png";
 import "./Home.css";
+
 const Home = () => {
   const textRef = useRef(null);
+
   useEffect(() => {
     const typed = new Typed(textRef.current, {
       strings: [
@@ -25,8 +27,8 @@ const Home = () => {
       typed.destroy();
     };
   }, []);
+
   useLayoutEffect(() => {
-    // CLEAR any previous transforms
     gsap.set(".leftBox", { x: "-100%", opacity: 0 });
     gsap.set(".rightBox", { x: "100%", opacity: 0 });
 
@@ -49,13 +51,14 @@ const Home = () => {
     );
 
     return () => {
-      tl.kill(); // cleanup
+      tl.kill();
     };
   }, []);
 
   return (
     <>
       <div className="main-div" id="home-section">
+        {/* ── LEFT CONTENT ── */}
         <div className="leftBox">
           <div className="heading">
             <h2 id="full">Full Stack</h2>
@@ -71,18 +74,22 @@ const Home = () => {
               <span style={{ ["--i"]: "9" }}>R</span>
             </div>
           </div>
+
           <div className="heroText">
             <span className="typewrap">
               <span ref={textRef}></span>
             </span>
           </div>
+
           <p>Engineering smooth, scalable, and impactful web experiences.</p>
+
           <div className="skils-div">
             <p>React</p>
             <p>Javascript</p>
             <p>NodeJs</p>
             <p>MySQL</p>
           </div>
+
           <div className="btn-div">
             <button>
               <a
@@ -111,6 +118,7 @@ const Home = () => {
               </a>
             </button>
           </div>
+
           <div className="links">
             <a href="https://www.linkedin.com/in/chirag-sethi-42216527b/">
               <IoLogoLinkedin />
@@ -120,8 +128,40 @@ const Home = () => {
             </a>
           </div>
         </div>
+
+        {/* ── RIGHT BOX – AVATAR + ORBIT SYSTEM ── */}
         <div className="rightBox">
-          <img src={developerImage} alt="Developer Image" />
+          <div className="orbit-system">
+
+            {/* Soft radial glow behind avatar */}
+            <div className="avatar-glow" />
+
+            {/* ── ORBIT RING 1 (innermost) ── */}
+            <div className="orbit-ring orbit-ring-1">
+              <div className="orbit-particle particle-1a" />
+              <div className="orbit-particle particle-1b" />
+            </div>
+
+            {/* ── ORBIT RING 2 (middle) ── */}
+            <div className="orbit-ring orbit-ring-2">
+              <div className="orbit-particle particle-2a" />
+              <div className="orbit-particle particle-2b" />
+              <div className="orbit-particle particle-2c" />
+            </div>
+
+            {/* ── ORBIT RING 3 (outermost) ── */}
+            <div className="orbit-ring orbit-ring-3">
+              <div className="orbit-particle particle-3a" />
+              <div className="orbit-particle particle-3b" />
+            </div>
+
+            {/* Avatar image */}
+            <img
+              className="avatar-img"
+              src={developerImage}
+              alt="Developer Avatar"
+            />
+          </div>
         </div>
       </div>
     </>

@@ -9,11 +9,13 @@ textarea:-webkit-autofill:focus {
   -webkit-text-fill-color: #ffffff !important;
   transition: background-color 9999s ease-in-out 0s;
 }
+
 .one h1 {
   text-align: center;
   text-transform: uppercase;
   padding-bottom: 5px;
 }
+
 .one h1:before {
   width: 28px;
   height: 5px;
@@ -25,6 +27,7 @@ textarea:-webkit-autofill:focus {
   margin-left: -14px;
   background-color: #0a66c2;
 }
+
 .one h1:after {
   width: 100px;
   height: 1px;
@@ -36,6 +39,7 @@ textarea:-webkit-autofill:focus {
   margin-left: -50px;
   background-color: #0a66c2;
 }
+
 .firstpara {
   font-family: "baloo 2", cursive;
   padding-top: 50px;
@@ -43,9 +47,11 @@ textarea:-webkit-autofill:focus {
   max-width: 900px;
   margin: 20px auto;
 }
+
 .contact-main-div {
   padding-top: 50px;
-  background-color: rgb(7, 7, 30);
+  background:
+    radial-gradient(#0b1220 0%, #05070d 70%);
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -54,6 +60,7 @@ textarea:-webkit-autofill:focus {
   padding-bottom: 100px;
   scroll-margin-top: 80px;
 }
+
 .divs {
   width: 100%;
   display: flex;
@@ -65,11 +72,9 @@ textarea:-webkit-autofill:focus {
 
 .connect-card {
   font-family: "baloo 2", cursive;
-  background: linear-gradient(
-    135deg,
-    rgba(255, 255, 255, 0.15),
-    rgba(255, 255, 255, 0.05)
-  );
+  background: linear-gradient(135deg,
+      rgba(255, 255, 255, 0.15),
+      rgba(255, 255, 255, 0.05));
   border-radius: 20px;
   padding: 25px;
   display: flex;
@@ -126,10 +131,21 @@ textarea:-webkit-autofill:focus {
   font-size: 14px;
   color: #cfcfcf;
 }
+
 .right-contact-div {
   width: 30%;
 }
+
+/* Left / right widths — layout only; orbit styles live in HeroOrbit.css */
+.left-contact-div {
+  width: 45%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
 .contact {
+
   padding: 60px 20px;
   color: #fff;
   font-family: "baloo 2", cursive;
@@ -197,27 +213,35 @@ textarea:-webkit-autofill:focus {
   justify-content: center;
   gap: 12px;
   background: #0a66c2;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  transition:
+    transform 0.3s ease,
+    box-shadow 0.3s ease;
 }
 
 .contact button:hover {
   transform: translateY(-3px);
   box-shadow: 0 12px 30px rgb(6, 6, 94);
 }
+
 .contact-title {
   opacity: 0;
   transform: translateY(-80px);
-  transition: opacity 1.8s ease, transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    opacity 1.8s ease,
+    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .contact-title.show {
   opacity: 1;
   transform: translateY(0);
 }
+
 .slide-left,
 .slide-right {
   opacity: 0;
-  transition: opacity 1.8s ease, transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    opacity 1.8s ease,
+    transform 1.8s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 /* initial positions */
@@ -282,8 +306,8 @@ textarea:-webkit-autofill:focus {
     padding: 30px 12px;
     margin: 0 auto;
   }
-  
-  .firstpara{
+
+  .firstpara {
     padding: 40px;
   }
 }

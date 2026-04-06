@@ -5,16 +5,18 @@
   right: 0;
   height: 90px;
   z-index: 9999;
+  background:
+    radial-gradient(#0b1220 0%, #05070d 70%);
+  border-bottom: 1px solid whitesmoke;
+
 }
 
-/* INNER BLUR LAYER (SAFE) */
+/* INNER BLUR LAYER – fully transparent, no tinting */
 .Navbar-blur {
   height: 100%;
   width: calc(100% - var(--scrollbar-width, 0px));
-
-  background: rgba(7, 7, 30, 0);
-  backdrop-filter: blur(12px);
-  -webkit-backdrop-filter: blur(12px);
+  background: transparent;
+  /* no backdrop-filter: blur compositing creates a visible tint even on transparent bg */
 }
 
 .Navbar-div a.active {
@@ -30,33 +32,41 @@
   background: #00bfff;
   margin-top: 4px;
 }
+
 .Navbar-div nav {
+  /* match hero section's max-width container & symmetric gutters */
+  max-width: 1280px;
   width: 100%;
   height: 100%;
+  margin: 0 auto;
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-left: 40px;
+  padding: 0 80px;
+  box-sizing: border-box;
 }
+
 .name {
   color: white;
   font-size: 40px;
   font-weight: 300;
   font-family: "Baloo 2", cursive;
 }
+
 .navList ul {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
-  padding-right: 100px;
+  padding-right: 0;
   color: white;
   list-style: none;
   font-family: "Baloo 2", cursive;
   font-size: 25px;
   gap: 40px;
 }
+
 .Navbar-div a {
   color: white;
   text-decoration: none;
@@ -90,10 +100,12 @@
   0% {
     background-position: 200% 0;
   }
+
   100% {
     background-position: -200% 0;
   }
 }
+
 /* =========================
    MOBILE FULLSCREEN MENU
    ========================= */
@@ -101,7 +113,8 @@
 .hamburger {
   display: none;
   position: relative;
-  z-index: 10003; /* HIGHER than mobileMenu */
+  z-index: 10003;
+  /* HIGHER than mobileMenu */
 }
 
 .mobileMenu {
@@ -109,6 +122,11 @@
 }
 
 @media (max-width: 768px) {
+  .Navbar-div nav {
+    padding: 0 24px;
+    max-width: 100%;
+  }
+
   .navList {
     display: none;
   }
@@ -159,12 +177,14 @@
 
     z-index: 10001;
   }
+
   .mobileMenu a {
     color: whitesmoke;
     font-family: "baloo 2", cursive;
     text-decoration: none;
   }
 }
+
 /* =========================
    MOBILE MENU CLOSE BUTTON
    ========================= */
