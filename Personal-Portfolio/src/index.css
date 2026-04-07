@@ -30,18 +30,18 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #00bfff;
+  background: #064894;
   border-radius: 6px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #0a66c2;
+  background: #05325f;
 }
 
 /* Firefox */
 * {
   scrollbar-width: thin;
-  scrollbar-color: #00bfff #0a1a2f;
+  scrollbar-color: #054a8a #0a1a2f;
 }
 
 /* prevent page-level vertical scrolling caused by oversized hero sections */
