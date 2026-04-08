@@ -5,10 +5,92 @@
   right: 0;
   height: 90px;
   z-index: 9999;
-  background:
-    radial-gradient(#0b1220 0%, #05070d 70%);
-  border-bottom: 1px solid whitesmoke;
+  border-bottom: none;
+  overflow: visible;
+  /* Background removed because svg waves fill it */
+}
 
+/* Added base fallback background behind the waves */
+.Navbar-div::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #05070d;
+  /* Match body dark background */
+  z-index: -1;
+}
+
+/* =====================================================
+   WAVE LAYER BACKGROUND
+   ===================================================== */
+.navbar-waves-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 250px;
+  /* fills navbar and bleeds strongly */
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+  /* Prevent horizontal scroll */
+  width: 100%;
+}
+
+.nav-wave {
+  position: absolute;
+  top: 0;
+  left: -10%;
+  width: 120%;
+  height: 80%;
+}
+
+/* Subtly changing opacities and depths */
+.wave-1 path {
+  fill: #08101f;
+  /* Back layer: darkest */
+}
+
+.wave-2 path {
+  fill: #08101f;
+  /* Middle layer */
+}
+
+.wave-3 path {
+  fill: #111f38;
+  /* Front layer: lightest but still deep blue */
+}
+
+.wave-1 {
+  animation: waveResp 24s ease-in-out infinite alternate;
+  opacity: 0.8;
+}
+
+.wave-2 {
+  animation: waveResp 30s ease-in-out infinite alternate-reverse;
+  opacity: 0.9;
+}
+
+.wave-3 {
+  animation: waveResp 36s ease-in-out infinite alternate;
+  opacity: 1;
+}
+
+@keyframes waveResp {
+  0% {
+    transform: translateX(0) scaleY(1);
+  }
+
+  50% {
+    transform: translateX(-4%) scaleY(1.03);
+  }
+
+  100% {
+    transform: translateX(-8%) scaleY(0.97);
+  }
 }
 
 /* INNER BLUR LAYER – fully transparent, no tinting */
@@ -16,7 +98,8 @@
   height: 100%;
   width: calc(100% - var(--scrollbar-width, 0px));
   background: transparent;
-  /* no backdrop-filter: blur compositing creates a visible tint even on transparent bg */
+  position: relative;
+  z-index: 1;
 }
 
 .Navbar-div a.active {

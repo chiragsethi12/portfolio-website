@@ -35,7 +35,8 @@
   max-width: 1080px;
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 44px 52px;          /* row-gap | column-gap */
+  gap: 44px 52px;
+  /* row-gap | column-gap */
 }
 
 /* Single category block */
@@ -102,7 +103,7 @@
   transform: translateX(var(--slide-dir, -90px));
 
   transition:
-    opacity   0.65s ease-out              var(--stagger, 0ms),
+    opacity 0.65s ease-out var(--stagger, 0ms),
     transform 0.65s cubic-bezier(0.25, 1, 0.5, 1) var(--stagger, 0ms);
 
   will-change: transform, opacity;
@@ -131,7 +132,7 @@
   align-items: center;
   justify-content: center;
   gap: 12px;
-  width: 110px;
+  width: 115px;
   padding: 22px 12px 18px;
 
   background-color: #0d1829;
@@ -141,8 +142,8 @@
 
   /* Only hover effects use transform here */
   transition:
-    transform    0.24s ease,
-    box-shadow   0.24s ease,
+    transform 0.24s ease,
+    box-shadow 0.24s ease,
     border-color 0.24s ease;
 }
 

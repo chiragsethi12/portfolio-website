@@ -42,6 +42,22 @@ const NavBar = () => {
     <>
       {/* ================= NAVBAR ================= */}
       <div className="Navbar-div">
+        {/* ================= WAVE BACKGROUND ================= */}
+        <div className="navbar-waves-bg" aria-hidden="true">
+          {/* Back Layer - Darkest */}
+          <svg className="nav-wave wave-1" viewBox="0 0 1440 250" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L1440,0 L1440,180 C1100,260 700,80 350,160 C150,200 50,160 0,140 Z" />
+          </svg>
+          {/* Middle Layer */}
+          <svg className="nav-wave wave-2" viewBox="0 0 1440 250" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L1440,0 L1440,140 C1200,80 900,220 500,140 C200,80 80,140 0,180 Z" />
+          </svg>
+          {/* Front Layer - Lightest */}
+          <svg className="nav-wave wave-3" viewBox="0 0 1440 250" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0,0 L1440,0 L1440,110 C1000,170 800,40 400,150 C150,210 50,120 0,100 Z" />
+          </svg>
+        </div>
+
         <div className="Navbar-blur">
           <nav ref={navRef}>
             <div className="name">Chirag Sethi</div>
@@ -78,6 +94,8 @@ const NavBar = () => {
             </div>
           </nav>
         </div>
+
+
       </div>
 
       {/* ================= FULLSCREEN MOBILE MENU ================= */}
