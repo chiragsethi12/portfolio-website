@@ -14,6 +14,8 @@ textarea:-webkit-autofill:focus {
   text-align: center;
   text-transform: uppercase;
   padding-bottom: 5px;
+  font-size: 40px;
+
 }
 
 .one h1:before {
@@ -45,11 +47,11 @@ textarea:-webkit-autofill:focus {
   padding-top: 50px;
   text-align: justify;
   max-width: 900px;
-  margin: 20px auto;
+  margin: 10px auto;
 }
 
 .contact-main-div {
-  padding-top: 50px;
+  padding-top: 30px;
   background:
     radial-gradient(#0b1220 0%, #05070d 70%);
   display: flex;
